@@ -1,3 +1,3 @@
 # OOP.Project
 First OOP project in python using basic concepts like classes, interfaces, inheritance and polymorphism. 
-The project idea is a program where the customer has acess to a bank account from ATMs and transfers, wthdraws or deposits money.
+The project idea is to make a bank account that allows the customer to transfer, withdraw or deposit money when interacting with ATMs and it updates the balance whenever they make a movement.
