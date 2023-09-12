@@ -28,17 +28,16 @@ class Account(Bank):
 class ATM(Bank):
     def __init__(self, location, bank_name):
         self.location = location
-        self.bank_name = bank_name
+        self._bank_name = bank_name  # Use a different attribute name to avoid method name conflict
 
     def bank_name(self):
-        return self.bank_name
+        return self._bank_name
 
     def transfer(self, amount, account):
         if amount > 0:
             account.transfer(amount)
         else:
             print("Invalid amount for transfer, value has to be greater than 0")
-
 
 account1 = Account("Luis", 10000)
 account1.transfer(500)
