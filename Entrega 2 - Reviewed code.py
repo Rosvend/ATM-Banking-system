@@ -28,7 +28,7 @@ class Account(Bank):
 class ATM(Bank):
     def __init__(self, location, bank_name):
         self.location = location
-        self._bank_name = bank_name  # Use a different attribute name to avoid method name conflict
+        self._bank_name = bank_name 
 
     def bank_name(self):
         return self._bank_name
