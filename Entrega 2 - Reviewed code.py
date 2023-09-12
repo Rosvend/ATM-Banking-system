@@ -39,12 +39,9 @@ class ATM(Bank):
         else:
             print("Invalid amount for transfer, value has to be greater than 0")
 
-# Create an Account instance
+
 account1 = Account("Luis", 10000)
-
-# Create an ATM instance
+account1.transfer(500)
 ATM1 = ATM("Laureles", "Bancolombia")
-
-# Transfer money from the ATM to the account
 ATM1.transfer(500, account1)
 
