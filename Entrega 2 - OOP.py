@@ -66,9 +66,12 @@ class customer():
         self.id = id
         self.age = age
         self.cardnumber = cardnumber
+   
 
     def insertcard(self,cardnumber):
-        if self.cardnumber == 1:
+        print("Reading card...")
+        input("Please enter your pin")
+        if cardnumber == 1 
             pass
         else:
             return KeyError
