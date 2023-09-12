@@ -34,7 +34,7 @@ class Account(Bank):
     
     def withdraw(self, amount):
         self.balance -= amount
-        print("You have withdrawn ${}, your new balance is {}".format(amount,self.balance))
+        print("You have withdrawn ${}, your new balance is ${}".format(amount,self.balance))
         return self.balance
 
 account1 = Account("Luis",10000,"001")
@@ -48,12 +48,12 @@ class ATM(Bank):
     def bank_name(self):
         return self.bank_name
     
-    def transfer(self, amount):
+    def transfer(self, amount,account):
         if amount > self.balance:
             print("Insufficient funds")
         else:
-            self.balance -= amount
-            print("Transferred correctly, your new balance is {}".format(self.balance))
+            self.balance = self.balance - amount
+            print("Transferred correctly, your new balance is ${}".format(self.balance))
         
 
 ATM1 = ATM("Laureles","Bancolombia", 12000)
@@ -70,8 +70,18 @@ class customer():
 
     def insertcard(self,cardnumber):
         print("Reading card...")
-        input("Please enter your pin")
-        if cardnumber == 1 
-            pass
+        input("Please enter your pin:  ")
+        if cardnumber == "1":
+            option = input("Please enter your option:  ")
+            if option != "Transfer":
+                amount = int(input("Please enter amount to transfer:  "))
+                ATM1.transfer(amount,account1)
+            else:
+                return KeyError
+
+            
         else:
             return KeyError
+    
+customer1 = customer("Daniel",100,23,"1")
+customer1.insertcard("1")
