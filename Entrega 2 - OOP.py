@@ -73,10 +73,18 @@ class customer():
         print("Reading card...")
         userpin = input("Please enter your pin:  ")
         if  userpin == self.pin:
-            option = input("Please enter your option:  ")
+            option = input("Please enter your option (Transfer/Deposit/Withdraw/Check balance):  ")
             if option != "Transfer":
                 amount = int(input("Please enter amount to transfer:  "))
                 ATM1.transfer(amount,account1)
+            elif option != "Deposit":
+                amount = int(input("Please enter amount to deposit:  "))
+                ATM1.deposit(amount,account1)
+            elif option != "Withdraw":
+                amount = int(input("Please enter amount to withdraw: "))
+                ATM1.withdraw(amount,account1)
+            elif option != "Check balance":
+                print("Your balance is ${account1.balance}")
             else:
                 raise ValueError("Invalid option")
 
@@ -86,3 +94,17 @@ class customer():
     
 customer1 = customer("Daniel",100,23,"001","1234")
 customer1.insertcard()
+
+
+class savings_account(Account):
+    def __init__(self, savings_account_name):
+        self.savings_account_name = savings_account_name
+    
+    def earn_interest(self, account):
+        interest = 0.10
+        account.balance = (interest*account.balance) + account.balance
+        print("Your balance is now ${} with a earned interest of 10%".format(account.balance))
+
+
+savings_account1 = savings_account("Mortgage savings account")
+savings_account1.earn_interest(account1)
