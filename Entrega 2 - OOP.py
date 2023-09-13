@@ -77,11 +77,11 @@ class customer():
                 amount = int(input("Please enter amount to transfer:  "))
                 ATM1.transfer(amount,account1)
             else:
-                return KeyError
+                raise ValueError("Invalid option")
 
             
         else:
-            return KeyError
+            raise ValueError("Invalid card number")
     
 customer1 = customer("Daniel",100,23,"1")
 customer1.insertcard("1")
