@@ -67,7 +67,7 @@ class customer():
         self.age = age
         self.cardnumber = cardnumber
 
-    def insertcard(self,cardnumber):
+    def insertcard(self):
         if self.cardnumber == 1:
             pass
         else:
