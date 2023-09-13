@@ -66,11 +66,20 @@ class customer():
         self.id = id
         self.age = age
         self.cardnumber = cardnumber
-   
+    
 
-    def insertcard(self):
-        if self.cardnumber == 1:
-            pass
+    def insertcard(self,cardnumber):
+        print("Reading card...")
+        input("Please enter your pin:  ")
+        if cardnumber == "1":
+            option = input("Please enter your option:  ")
+            if option != "Transfer":
+                amount = int(input("Please enter amount to transfer:  "))
+                ATM1.transfer(amount,account1)
+            else:
+                return KeyError
+
+            
         else:
             return KeyError
     
