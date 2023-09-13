@@ -15,7 +15,11 @@ class Account(Bank):
         self.balance = balance
         self.account_number = account_number
         self.bank_name = "MyBank"  # Set the bank name here or remove it if not needed
-        
+    
+    def bank_name(self):
+        return super().bank_name()
+    
+    
     def transfer(self, amount):
         if amount > self.balance:
             print("Insufficient funds")
@@ -37,8 +41,11 @@ class ATM(Bank):
     def __init__(self, location, bank_name):
         self.location = location
         self.bank_name = bank_name
-        self.balance = 0  # Initialize the ATM balance
-
+        self.balance = 0
+    
+    def bank_name(self):
+        return super().bank_name()
+    
     def transfer(self, amount, account):
         if amount > self.balance:
             print("ATM has insufficient funds")
@@ -55,6 +62,7 @@ class Customer:
         self.age = age
         self.cardnumber = cardnumber
         self.pin = pin  # Store the PIN during customer creation
+    
 
     def insertcard(self):
         print("Reading card...")
