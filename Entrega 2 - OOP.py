@@ -49,11 +49,11 @@ class ATM(Bank):
         return self.bank_name
     
     def transfer(self, amount,account):
-        if amount > self.balance:
+        if amount > account.balance:
             print("Insufficient funds")
         else:
-            self.balance = self.balance - amount
-            print("Transferred correctly, your new balance is ${}".format(self.balance))
+            account.balance -= amount
+            print("Transferred correctly, your new balance is ${}".format(account.balance))
         
 
 ATM1 = ATM("Laureles","Bancolombia", 12000)
