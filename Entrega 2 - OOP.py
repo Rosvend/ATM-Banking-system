@@ -61,17 +61,18 @@ account1.transfer(100)
 account1.deposit(100)
 
 class customer():
-    def __init__(self, name, id, age,cardnumber):
+    def __init__(self, name, id, age,cardnumber,pin):
         self.name = name
         self.id = id
         self.age = age
         self.cardnumber = cardnumber
+        self.pin = pin
     
 
-    def insertcard(self,cardnumber):
+    def insertcard(self):
         print("Reading card...")
-        input("Please enter your pin:  ")
-        if cardnumber == "1":
+        userpin = input("Please enter your pin:  ")
+        if  userpin == self.pin:
             option = input("Please enter your option:  ")
             if option != "Transfer":
                 amount = int(input("Please enter amount to transfer:  "))
@@ -83,5 +84,5 @@ class customer():
         else:
             raise ValueError("Invalid card number")
     
-customer1 = customer("Daniel",100,23,"1")
-customer1.insertcard("1")
+customer1 = customer("Daniel",100,23,"001","1234")
+customer1.insertcard()
