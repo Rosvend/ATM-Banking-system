@@ -106,7 +106,7 @@ class customer():
     def savemoney(self, amount,account):
         amount = int(input("Please enter the amount to save:  "))
         ATM1.transfer(amount,account)
-        print("Saved money correctly, your savings account balance is ${}".format(account.balance))
+        print("Saved money correctly, your savings account balance is ${}".format(savings_account1.balance))
 
     
 customer1 = customer("Daniel",100,23,"001","1234")
@@ -114,14 +114,14 @@ customer1.insertcard()
 
 
 class savings_account(Account):
-    def __init__(self, savings_account_name, balance):
+    def __init__(self, savings_account_name,balance):
         self.savings_account_name = savings_account_name
         self.balance = balance
     
     def earn_interest(self, account):
         interest = 0.10
         account.balance = (interest*account.balance) + account.balance
-        print("Your balance is now ${} with a earned interest of 10%".format(savings_account1.balance))
+        print("Your balance is now ${} with a earned interest of 10%".format(account.balance))
 
 
 savings_account1 = savings_account("Mortgage savings account",100000)
