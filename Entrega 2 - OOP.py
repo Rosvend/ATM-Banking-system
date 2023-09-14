@@ -54,6 +54,17 @@ class ATM(Bank):
         else:
             account.balance -= amount
             print("Transferred correctly, your new balance is ${}".format(account.balance))
+    
+    def deposit(self, amount,account):
+        account.balance += amount
+        print("Deposited money correctly, your new balance is ${}".format(account.balance))
+    
+    def withdraw(self, amount,account):
+        if amount > account.balance:
+            print("Insufficient funds")
+        else:
+            account.balance -= amount
+            print("You have withdrawn money correctly, your new balance is ${}".format(account.balance))
         
 
 ATM1 = ATM("Laureles","Bancolombia", 12000)
@@ -74,17 +85,17 @@ class customer():
         userpin = input("Please enter your pin:  ")
         if  userpin == self.pin:
             option = input("Please enter your option (Transfer/Deposit/Withdraw/Check balance):  ")
-            if option != "Transfer":
+            if option == "Transfer":
                 amount = int(input("Please enter amount to transfer:  "))
                 ATM1.transfer(amount,account1)
-            elif option != "Deposit":
+            elif option == "Deposit":
                 amount = int(input("Please enter amount to deposit:  "))
                 ATM1.deposit(amount,account1)
-            elif option != "Withdraw":
+            elif option == "Withdraw":
                 amount = int(input("Please enter amount to withdraw: "))
                 ATM1.withdraw(amount,account1)
-            elif option != "Check balance":
-                print("Your balance is ${account1.balance}")
+            elif option == "Check":
+                print("Your balance is ${}".format(account1.balance))
             else:
                 raise ValueError("Invalid option")
 
@@ -92,19 +103,27 @@ class customer():
         else:
             raise ValueError("Invalid card number")
     
+    def savemoney(self, amount,account):
+        amount = int(input("Please enter the amount to save:  "))
+        ATM1.transfer(amount,account)
+        print("Saved money correctly, your savings account balance is ${}".format(account.balance))
+
+    
 customer1 = customer("Daniel",100,23,"001","1234")
 customer1.insertcard()
 
 
 class savings_account(Account):
-    def __init__(self, savings_account_name):
+    def __init__(self, savings_account_name, balance):
         self.savings_account_name = savings_account_name
+        self.balance = balance
     
     def earn_interest(self, account):
         interest = 0.10
         account.balance = (interest*account.balance) + account.balance
-        print("Your balance is now ${} with a earned interest of 10%".format(account.balance))
+        print("Your balance is now ${} with a earned interest of 10%".format(savings_account1.balance))
 
 
-savings_account1 = savings_account("Mortgage savings account")
+savings_account1 = savings_account("Mortgage savings account",100000)
 savings_account1.earn_interest(account1)
+customer1.savemoney(5000,savings_account1)
