@@ -1,10 +1,10 @@
 from Bank import Bank #Importamos la interfaz ya que esta clase hereda de la interfaz
 class Account(Bank):
-    def __init__(self, owner, balance, account_number): 
+    def __init__(self, owner, balance, account_number):  #Creamos el metodo constructor con 3 argumentos que vamos a utilizar
         self.owner = owner
         self.balance = balance
         self.account_number = account_number
-        self.bank_name = "MyBank"
+        self.bank_name = "" 
     
     def bank_name(self):
         return super().bank_name()

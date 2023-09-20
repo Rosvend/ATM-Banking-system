@@ -11,9 +11,6 @@ customer1 = customer("Daniel", 100, 23, "1", "1234",ATM1,account1,0)
 savings_account1 = savings_account("Mortgage savings account",100000)
 
 #Aplicamos los métodos a cualquiera de los objetos
-account1.transfer(100)
-account1.deposit(100)
 customer1.insertcard()
 customer1.changepin()
 savings_account1.earn_interest(account1)
-customer1.savemoney(5000,savings_account1)

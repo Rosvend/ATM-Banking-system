@@ -18,8 +18,10 @@ class customer:
                 print("1. Transfer")
                 print("2. Deposit")
                 print("3. Withdraw")
-                print("4. Exit")
-                option = input("Please enter your option (1/2/3/4):  ")
+                print("4. Change your PIN")
+                print("5. Save money")
+                print("6. Exit")
+                option = input("Please enter your option (1/2/3/4/5/6):  ")
                 
                 if option == "1":
                     amount = int(input("Please enter the amount to transfer:  "))
@@ -30,15 +32,20 @@ class customer:
                 elif option == "3":
                     amount = int(input("Please enter the amount to withdraw:  "))
                     self.account_instance.withdraw(amount)
-                elif option == "4":
+                elif option == "6":
                     print("Exiting the system. Thank you for using our services!")
                     break
+                elif option == "4":
+                    self.changepin()
+                
+                elif option == "5":
+                    self.savemoney()
                 else:
                     print("Invalid option")
         else:
             print("Invalid PIN")
     
-    def savemoney(self,amount):
+    def savemoney(self):
         amount = int(input("Please enter the amount to save:  "))
         self.savings_balance += amount
         print("You have saved ${}, your savings account balance is now ${}.".format(amount, self.savings_balance))
