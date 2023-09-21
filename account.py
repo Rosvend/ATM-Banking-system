@@ -11,16 +11,22 @@ class Account(Bank):
     
     
     def transfer(self, amount):
-        if amount > self.balance:
-            print("Insufficient funds")
-        else:
+        if amount <=0:
+             print("Please enter a valid number")
+            
+        elif amount < self.balance and amount >0:
             self.balance -= amount
             print("Transferred correctly, your new balance is ${}".format(self.balance))
-    
+        
+        else:
+             print("Insufficient funds or value is lesser than zero.") 
     def deposit(self, amount):
         self.balance += amount
         print("You have deposited ${}, your new balance is ${}".format(amount, self.balance))
     
     def withdraw(self, amount):
-        self.balance -= amount
-        print("You have withdrawn ${}, your new balance is ${}".format(amount, self.balance))
+            if amount < self.balance and amount > 0:
+                self.balance -= amount
+                print("You have withdrawn ${}, your new balance is ${}".format(amount, self.balance))
+            else:
+                 print("Insufficient funds or value is lesser than zero")
