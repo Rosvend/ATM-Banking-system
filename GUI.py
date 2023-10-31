@@ -18,12 +18,19 @@ root.title("ATM Banking System")
 
 root.geometry("400x300+600+200")
 
-label1 = tk.Label(root, text="Welcome to the ATM")
-label2 = tk.Label(root, text="Reading your card...")
+label1 = tk.Label(root, text="Welcome to the ATM, please enter your card to continue")
+label2 = tk.Label(root, text="Reading your card...",state='normal')
+
+def show_label2():
+    label2.pack()
+
+def start_process():
+    show_label2()
+    customer1.insertcard()
 
 label1.pack()
 
-button1 = tk.Button(root, text='Insert card', padx=20,pady=10,command=customer1.insertcard)
+button1 = tk.Button(root, text='Insert card', padx=20,pady=10,command=start_process)
 button1.pack()
-label2.pack()
+entry = tk.Entry(root)
 root.mainloop()
