@@ -1,113 +1,29 @@
 import tkinter as tk
 from account import Account
+from ATM import ATM
+from customer import customer
+from savings import savings_account
 
-# Create customer accounts
-customer1_account = Account("Daniel", "001", 50000)
-customer2_account = Account("Sofia", "002", 100000)
+customer1_account = Account("Daniel", 50000, "001")
+customer2_account = Account("Sofia", 100000, "002")
+ATM1 = ATM("Laureles", "Bancolombia",customer1_account)
+ATM2 = ATM("San Juan", "Davivienda",customer2_account)
+customer1 = customer("Daniel", "100", 26, "001", "1234",ATM1,customer1_account,0,"yes")
+customer2 = customer("Sofia", "99", 18, "002", "4321", ATM2,customer2_account, 0, "no")
+savings_account1 = savings_account("Mortgage savings account",0)
 
-# Initialize the main banking logic function
-def main_program_logic(customer_name, account_number, pin, operation, amount):
-    if customer_name == "Daniel":
-        customer = customer1_account
-    elif customer_name == "Sofia":
-        customer = customer2_account
-    else:
-        result_label.config(text="Invalid customer name")
-        return
 
-    if customer.account_number != account_number:
-        result_label.config(text="Invalid account number")
-        return
-
-    if customer.pin != pin:
-        result_label.config(text="Invalid PIN")
-        return
-
-    if operation == "Check Balance":
-        result_label.config(text="Your account balance is ${}".format(customer.balance))
-    elif operation == "Deposit":
-        customer.deposit(amount)
-        result_label.config(text="Deposited ${}, new balance: ${}".format(amount, customer.balance))
-    elif operation == "Withdraw":
-        if customer.balance < amount:
-            result_label.config(text="Insufficient funds for withdrawal")
-        else:
-            customer.withdraw(amount)
-            result_label.config(text="Withdrawn ${}, new balance: ${}".format(amount, customer.balance))
-    elif operation == "Transfer":
-        if customer.balance < amount:
-            result_label.config(text="Insufficient funds for transfer")
-        else:
-            if customer_name == "Daniel":
-                recipient = customer2_account
-            elif customer_name == "Sofia":
-                recipient = customer1_account
-            else:
-                result_label.config(text="Invalid recipient name")
-                return
-            customer.transfer(amount, recipient)
-            result_label.config(text="Transferred ${} to {}, new balance: ${}".format(amount, recipient.name, customer.balance))
-    else:
-        result_label.config(text="Invalid operation")
-
-# GUI event handler for the button click
-def button_click():
-    customer_name = name_entry.get()
-    account_number = account_number_entry.get()
-    customer_pin = pin_entry.get()
-    selected_operation = operation_var.get()
-    amount = float(amount_entry.get())
-    
-    main_program_logic(customer_name, account_number, customer_pin, selected_operation, amount)
-    balance_label.config(text="Balance: ${}".format(customer.balance))
-
-# Create the main window
 root = tk.Tk()
-root.title("Banking Application - Roy Sandoval")
+root.title("ATM Banking System")
 
-# Entry fields
-name_label = tk.Label(root, text="Name:")
-name_label.pack()
-name_entry = tk.Entry(root)
-name_entry.pack()
+root.geometry("400x300+600+200")
 
-account_number_label = tk.Label(root, text="Account Number:")
-account_number_label.pack()
-account_number_entry = tk.Entry(root)
-account_number_entry.pack()
+label1 = tk.Label(root, text="Welcome to the ATM")
+label2 = tk.Label(root, text="Reading your card...")
 
-pin_label = tk.Label(root, text="PIN:")
-pin_label.pack()
-pin_entry = tk.Entry(root, show="*")  # Use * to hide the PIN
-pin_entry.pack()
+label1.pack()
 
-# Operation selection
-operation_label = tk.Label(root, text="Select an operation:")
-operation_label.pack()
-
-operations = ["Check Balance", "Deposit", "Withdraw", "Transfer"]
-operation_var = tk.StringVar()
-operation_var.set(operations[0])
-operation_dropdown = tk.OptionMenu(root, operation_var, *operations)
-operation_dropdown.pack()
-
-# Amount entry (used for Deposit and Withdraw)
-amount_label = tk.Label(root, text="Amount:")
-amount_label.pack()
-amount_entry = tk.Entry(root)
-amount_entry.pack()
-
-# Balance label
-balance_label = tk.Label(root, text="")
-balance_label.pack()
-
-# Result label
-result_label = tk.Label(root, text="")
-result_label.pack()
-
-# Button to initiate the operation
-process_button = tk.Button(root, text="Process", command=button_click)
-process_button.pack()
-
-# Start the GUI
+button1 = tk.Button(root, text='Insert card', padx=20,pady=10,command=customer1.insertcard)
+button1.pack()
+label2.pack()
 root.mainloop()
