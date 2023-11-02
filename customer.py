@@ -20,8 +20,11 @@ class customer:
                 
 
             def insertcard(self):
-                def option1():
+                def transfer():
+                    
                     if self.cuatroxmil.lower() == "yes":
+                        transfer_label = tk.Label(root, text="You have a 4x1000 fee, please enter the amount to transfer: ")
+                        transfer_label.pack()
                         entry = tk.Entry(root, text='Please enter the amount to transfer: ')
                         entry.pack()
                         amount = float(entry.get())
@@ -96,7 +99,7 @@ class customer:
                                 button_frame = tk.Frame(root)
                                 button_frame.pack()
 
-                                transfer_button = tk.Button(button_frame, text="Transfer",command=option1)
+                                transfer_button = tk.Button(button_frame, text="Transfer",command=transfer)
                                 deposit_button = tk.Button(button_frame, text="Deposit",command=option2)
                                 withdraw_button = tk.Button(button_frame, text="Withdraw",command=option3)
                                 change_pin_button = tk.Button(button_frame, text="Change your PIN",command=option4)
@@ -122,7 +125,7 @@ class customer:
                         invalid_label = tk.Label(invalid_label_frame,text="Invalid PIN")
                         invalid_label.pack()
                 
-                submit_button = tk.Button(root, text="Submit",command=submit)
+                submit_button = tk.Button(root, text="Submit",command=submit,font=('arial', 10, 'bold'))
                 submit_button.pack()
 
             def savemoney(self):
@@ -185,7 +188,7 @@ class customer:
 
                     label1.pack()
 
-                    button1 = tk.Button(root, text='Insert card', padx=20,pady=10,command=start_process)
+                    button1 = tk.Button(root, text='Insert card', padx=20,pady=10,command=start_process,font=('arial', 13, 'bold'))
                     button1.pack()
                     root.mainloop()
 
