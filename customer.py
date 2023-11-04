@@ -42,7 +42,7 @@ class customer:
                         error_label = tk.Label(root, text="ERROR: Unknown")
                         error_label.pack()
 
-                def option2():
+                def deposit():
                     entry = tk.Entry(root, text='Please enter the amount to deposit: ')
                     entry.pack()
                     amount = float(entry.get())
@@ -50,7 +50,7 @@ class customer:
                     success_label = tk.Label(root, text="Deposit successful")
                     success_label.pack()
 
-                def option3():
+                def withdraw():
                     entry = tk.Entry(root, text='Please enter the amount to withdraw: ')
                     entry.pack()
                     amount = float(entry.get())
@@ -62,21 +62,21 @@ class customer:
                         success_label = tk.Label(root, text="Withdrawal successful")
                         success_label.pack()
 
-                def option4():
+                def change_pin():
                     self.changepin()
 
-                def option5():
+                def save_money():
                     entry = tk.Entry(root, text='Please enter the amount to save: ')
                     entry.pack()
                     save_button = tk.Button(root, text="Save", command=lambda: self.savemoney(entry.get()))
                     save_button.pack()
 
-                def option6():
-                    balance_label = tk.Label(root, text="Your account balance is {}.".format(self.account_instance.balance))
+                def check_balance():
+                    balance_label = tk.Label(root, text="Your account balance is ${}.".format(self.account_instance.balance),bg='light blue')
                     balance_label.pack()
 
-                def option7():
-                    exit_label = tk.Label(root, text="Exiting the system. Thank you for using our services!")
+                def exit():
+                    exit_label = tk.Label(root, text="Exiting the system. Thank you for using our services!",bg='light blue')
                     exit_label.pack()
                     root.quit()
 
@@ -102,12 +102,12 @@ class customer:
                                 button_frame.pack()
 
                                 transfer_button = tk.Button(button_frame, text="Transfer",command=transfer)
-                                deposit_button = tk.Button(button_frame, text="Deposit",command=option2)
-                                withdraw_button = tk.Button(button_frame, text="Withdraw",command=option3)
-                                change_pin_button = tk.Button(button_frame, text="Change your PIN",command=option4)
-                                save_money_button = tk.Button(button_frame, text="Save money",command=option5)
-                                check_balance_button = tk.Button(button_frame, text="Check balance",command=option6)
-                                exit_button = tk.Button(button_frame, text="Exit",command=option7,bg='red')
+                                deposit_button = tk.Button(button_frame, text="Deposit",command=deposit)
+                                withdraw_button = tk.Button(button_frame, text="Withdraw",command=withdraw)
+                                change_pin_button = tk.Button(button_frame, text="Change your PIN",command=change_pin)
+                                save_money_button = tk.Button(button_frame, text="Save money",command=save_money)
+                                check_balance_button = tk.Button(button_frame, text="Check balance",command=check_balance)
+                                exit_button = tk.Button(button_frame, text="Exit",command=exit,bg='red')
                                 
 
                                 transfer_button.grid(row=0, column=0, padx=15, pady=10)
@@ -124,7 +124,7 @@ class customer:
                     else:
                         invalid_label_frame = tk.Frame(root)
                         invalid_label_frame.pack()
-                        invalid_label = tk.Label(invalid_label_frame,text="Invalid PIN",bg='red',font=('arial', 15, 'bold'))
+                        invalid_label = tk.Label(invalid_label_frame,text="Incorrect PIN",bg='red',font=('arial', 15, 'bold'))
                         invalid_label.pack()
                 
                 submit_button = tk.Button(root, text="Submit",command=submit,font=('arial', 10, 'bold'))
