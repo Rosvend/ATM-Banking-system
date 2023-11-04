@@ -39,12 +39,12 @@ class customer:
                                 transfer_fee = (amount*4)/1000
                                 amount += transfer_fee
                                 self.atm_instance.transfer(amount, self.account_instance)
-                                sucess_label = tk.Label(root,text=f"You have succesfully transferred {amount}",bg='light blue', font=('arial', 10, 'bold'))
+                                sucess_label = tk.Label(root,text="You have succesfully transferred {}, your new balance is ${}".format(amount,self.account_instance.balance),bg='light blue', font=('arial', 10, 'bold'))
                                 sucess_label.pack()
                             
                             elif self.cuatroxmil.lower() == 'no':
                                 self.atm_instance.transfer(amount, self.account_instance)
-                                sucess_label = tk.Label(root,text=f"You have succesfully transferred {amount}",bg='light blue', font=('arial', 10, 'bold'))
+                                sucess_label = tk.Label(root,text="You have succesfully transferred {}, your new balance is ${}".format(amount,self.account_instance.balance),bg='light blue', font=('arial', 10, 'bold'))
                                 sucess_label.pack()
 
                             else:
