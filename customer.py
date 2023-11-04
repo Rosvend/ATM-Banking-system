@@ -93,7 +93,7 @@ class customer:
                          pass
                     if entered_pin == self.pin:
                             def show_options():
-                                options_label = tk.Label(root, text="\nPlease select an option:",font=('arial', 10, 'bold'))
+                                options_label = tk.Label(root, text="\nPlease select an option:",font=('arial', 10, 'bold'),bg='light blue')
                                 options_label.pack()
 
                                 button_frame = tk.Frame(root)
@@ -126,8 +126,9 @@ class customer:
                         invalid_label.pack()
                 
                 submit_button = tk.Button(root, text="Submit",command=submit,font=('arial', 10, 'bold'))
-                submit_button.pack()
+                submit_button.pack(pady=10)
 
+                
             def savemoney(self):
                 entry = tk.Entry(root, text='Please enter the amount to save: ')
                 entry.pack()
@@ -175,8 +176,9 @@ class customer:
                     
                     root.title("ATM Banking System")
                     root.geometry("600x600+500+100")
+                    root.configure(background='light blue')
 
-                    label1 = tk.Label(root, text="Welcome to the ATM, please enter your card to continue", font=('arial', 10, 'bold'), bg='yellow')
+                    label1 = tk.Label(root, text="Welcome to the ATM, please enter your card to continue", font=('arial', 12, 'bold'),bg='light blue')
                     label2 = tk.Label(root, text="Reading your card...",state='normal')
 
                     def show_label2():
@@ -188,7 +190,7 @@ class customer:
 
                     label1.pack()
 
-                    button1 = tk.Button(root, text='Insert card', padx=20,pady=10,command=start_process,font=('arial', 13, 'bold'))
-                    button1.pack()
+                    button1 = tk.Button(root, text='Insert card', padx=5,pady=5,command=start_process,font=('arial', 13, 'bold'))
+                    button1.pack(pady=10)
                     root.mainloop()
 
