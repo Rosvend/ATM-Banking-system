@@ -23,10 +23,12 @@ class customer:
                 def transfer():
                     
                     if self.cuatroxmil.lower() == "yes":
-                        transfer_label = tk.Label(root, text="You have a 4x1000 fee, please enter the amount to transfer: ")
+                        transfer_label = tk.Label(root, text="You have a 4x1000 fee, please enter the amount to transfer: ", bg='light blue', font=('arial', 10, 'bold'))
                         transfer_label.pack()
                         entry = tk.Entry(root, text='Please enter the amount to transfer: ')
                         entry.pack()
+                        transfer_button = tk.Button(root, text="Transfer", command=lambda: self.transfer(entry.get()),font=('arial', 10, 'bold'))
+                        transfer_button.pack(pady=10)
                         amount = float(entry.get())
                         transfer_fee = (amount*4)/1000
                         amount += transfer_fee
@@ -78,7 +80,7 @@ class customer:
                     exit_label.pack()
                     root.quit()
 
-                name_label = tk.Label(root, text=f'Welcome {self.name} to the ATM, please enter your PIN to continue')
+                name_label = tk.Label(root, text=f'Welcome {self.name} to the ATM, please enter your PIN to continue',bg='light blue', font=('arial', 10,'bold'))
                 name_label.pack()
                 pin_var = tk.StringVar()
                 entry = tk.Entry(root, textvariable=pin_var)
@@ -105,7 +107,7 @@ class customer:
                                 change_pin_button = tk.Button(button_frame, text="Change your PIN",command=option4)
                                 save_money_button = tk.Button(button_frame, text="Save money",command=option5)
                                 check_balance_button = tk.Button(button_frame, text="Check balance",command=option6)
-                                exit_button = tk.Button(button_frame, text="Exit",command=option7)
+                                exit_button = tk.Button(button_frame, text="Exit",command=option7,bg='red')
                                 
 
                                 transfer_button.grid(row=0, column=0, padx=15, pady=10)
@@ -122,7 +124,7 @@ class customer:
                     else:
                         invalid_label_frame = tk.Frame(root)
                         invalid_label_frame.pack()
-                        invalid_label = tk.Label(invalid_label_frame,text="Invalid PIN")
+                        invalid_label = tk.Label(invalid_label_frame,text="Invalid PIN",bg='red',font=('arial', 15, 'bold'))
                         invalid_label.pack()
                 
                 submit_button = tk.Button(root, text="Submit",command=submit,font=('arial', 10, 'bold'))
@@ -169,7 +171,7 @@ class customer:
                             error_label = tk.Label(root, text="PINs don't match")
                             error_label.pack()
                 else:
-                    error_label = tk.Label(root, text="Invalid PIN")
+                    error_label = tk.Label(root, text="Incorrect PIN")
                     error_label.pack()
 
             def starting_ATM(self):
@@ -179,10 +181,10 @@ class customer:
                     root.configure(background='light blue')
 
                     label1 = tk.Label(root, text="Welcome to the ATM, please enter your card to continue", font=('arial', 12, 'bold'),bg='light blue')
-                    label2 = tk.Label(root, text="Reading your card...",state='normal')
+                    label2 = tk.Label(root, text="Reading your card...",state='normal',font=('arial',10,'bold'),bg='light blue')
 
                     def show_label2():
-                        label2.pack()
+                        label2.pack(pady=5)
 
                     def start_process():
                         show_label2()
