@@ -21,26 +21,39 @@ class customer:
 
             def insertcard(self):
                 def transfer():
-                    
-                    if self.cuatroxmil.lower() == "yes":
-                        transfer_label = tk.Label(root, text="You have a 4x1000 fee, please enter the amount to transfer: ", bg='light blue', font=('arial', 10, 'bold'))
-                        transfer_label.pack()
-                        entry = tk.Entry(root, text='Please enter the amount to transfer: ')
-                        entry.pack()
-                        transfer_button = tk.Button(root, text="Transfer", command=lambda: self.transfer(entry.get()),font=('arial', 10, 'bold'))
+                        if self.cuatroxmil.lower() == 'yes':
+                            transfer_label = tk.Label(root, text="You have a 4x1000 fee, please enter the amount to transfer: ", bg='light blue', font=('arial', 10, 'bold'))
+                            transfer_label.pack()
+                            entry = tk.Entry(root)
+                            entry.pack()
+                        
+                        else:
+                            transfer_label = tk.Label(root, text="Please enter the amount to transfer: ", bg='light blue', font=('arial', 10, 'bold'))
+                            transfer_label.pack()
+                            entry = tk.Entry(root)
+                            entry.pack()
+
+                        def confirm_transfer():
+                            amount = float(entry.get())
+                            if self.cuatroxmil.lower() == "yes":
+                                transfer_fee = (amount*4)/1000
+                                amount += transfer_fee
+                                self.atm_instance.transfer(amount, self.account_instance)
+                                sucess_label = tk.Label(root,text=f"You have succesfully transferred {amount}",bg='light blue', font=('arial', 10, 'bold'))
+                                sucess_label.pack()
+                            
+                            elif self.cuatroxmil.lower() == 'no':
+                                self.atm_instance.transfer(amount, self.account_instance)
+                                sucess_label = tk.Label(root,text=f"You have succesfully transferred {amount}",bg='light blue', font=('arial', 10, 'bold'))
+                                sucess_label.pack()
+
+                            else:
+                                error_label = tk.Label(root, text="ERROR: Unknown")
+                                error_label.pack()
+
+                        transfer_button = tk.Button(root, text="Confirm transfer", command=confirm_transfer,font=('arial', 10, 'bold'))
                         transfer_button.pack(pady=10)
-                        amount = float(entry.get())
-                        transfer_fee = (amount*4)/1000
-                        amount += transfer_fee
-                        self.atm_instance.transfer(amount, self.account_instance)
-                    elif self.cuatroxmil.lower() == "no":
-                        entry = tk.Entry(root, text='Please enter the amount to transfer: ')
-                        entry.pack()
-                        amount = float(entry.get())
-                        self.atm_instance.transfer(amount, self.account_instance)
-                    else:
-                        error_label = tk.Label(root, text="ERROR: Unknown")
-                        error_label.pack()
+                    
 
                 def deposit():
                     entry = tk.Entry(root, text='Please enter the amount to deposit: ')
@@ -76,7 +89,7 @@ class customer:
                     balance_label.pack()
 
                 def exit():
-                    exit_label = tk.Label(root, text="Exiting the system. Thank you for using our services!",bg='light blue')
+                    exit_label = tk.Label(root, text="Exiting the system. Thank you for using our services!",bg='light blue', font=('arial', 10, 'bold'))
                     exit_label.pack()
                     root.quit()
 
@@ -107,7 +120,7 @@ class customer:
                                 change_pin_button = tk.Button(button_frame, text="Change your PIN",command=change_pin)
                                 save_money_button = tk.Button(button_frame, text="Save money",command=save_money)
                                 check_balance_button = tk.Button(button_frame, text="Check balance",command=check_balance)
-                                exit_button = tk.Button(button_frame, text="Exit",command=exit,bg='red')
+                                exit_button = tk.Button(button_frame, text="Exit",command=exit,bg='red',font=('arial', 10, 'bold'))
                                 
 
                                 transfer_button.grid(row=0, column=0, padx=15, pady=10)
