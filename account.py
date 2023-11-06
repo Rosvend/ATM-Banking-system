@@ -5,6 +5,7 @@ class Account(Bank):
         self.balance = balance
         self.account_number = account_number
         self.bank_name = "" 
+        self.transactions = []
     
     def bank_name(self):
         return super().bank_name()
@@ -30,3 +31,6 @@ class Account(Bank):
                 print("You have withdrawn ${}, your new balance is ${}".format(amount, self.balance))
             else:
                  print("Insufficient funds or value is lesser than zero")
+    
+    def add_transaction(self, amount, type_of_transaction):
+        self.transactions.append([amount, type_of_transaction])

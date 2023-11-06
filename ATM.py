@@ -12,16 +12,19 @@ class ATM(Bank):
         if amount > self.account_instance.balance:
             print("Insufficient funds")
         else:
-            self.account_instance.balance -= amount  
+            self.account_instance.balance -= amount
+            self.account_instance.add_transaction(amount, "transfer")  
             print("Transferred correctly, your new balance is ${}".format(self.account_instance.balance))
     
     def deposit(self, amount):
-        self.account_instance.balance += amount  
+        self.account_instance.balance += amount
+        self.account_instance.add_transaction(amount, "deposit") 
         print("Deposited money correctly, your new balance is ${}".format(self.account_instance.balance))
     
     def withdraw(self, amount):
         if amount > self.account_instance.balance:
             print("Insufficient funds")
         else:
-            self.account_instance.balance -= amount  
+            self.account_instance.balance -= amount
+            self.account_instance.add_transaction(amount, "withdrawal") 
             print("You have withdrawn money correctly, your new balance is ${}".format(self.account_instance.balance))
