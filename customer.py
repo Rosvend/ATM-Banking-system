@@ -1,6 +1,7 @@
 from account import Account
 from ATM import ATM
 import tkinter as tk
+from tkinter import messagebox
 
 root = tk.Tk()
 
@@ -38,14 +39,24 @@ class customer:
                             if self.cuatroxmil.lower() == "yes":
                                 transfer_fee = (amount*4)/1000
                                 amount += transfer_fee
-                                self.atm_instance.transfer(amount, self.account_instance)
-                                sucess_label = tk.Label(root,text="You have succesfully transferred {}, your new balance is ${}".format(amount,self.account_instance.balance),bg='light blue', font=('arial', 10, 'bold'))
-                                sucess_label.pack()
+                                confirm = messagebox.askyesno("Confirmation", "Are you sure you want to transfer ${}?".format(amount))
+                                if confirm:
+                                    self.atm_instance.transfer(amount, self.account_instance)
+                                    success_label = tk.Label(root,text="You have successfully transferred {}, your new balance is ${}".format(amount,self.account_instance.balance),bg='light blue', font=('arial', 10, 'bold'))
+                                    success_label.pack()
+                                else:
+                                    cancel_label = tk.Label(root,text="Transfer cancelled.",bg='light blue', font=('arial', 10, 'bold'))
+                                    cancel_label.pack()
                             
                             elif self.cuatroxmil.lower() == 'no':
-                                self.atm_instance.transfer(amount, self.account_instance)
-                                sucess_label = tk.Label(root,text="You have succesfully transferred {}, your new balance is ${}".format(amount,self.account_instance.balance),bg='light blue', font=('arial', 10, 'bold'))
-                                sucess_label.pack()
+                                confirm = messagebox.askyesno("Confirmation", "Are you sure you want to transfer ${}?".format(amount))
+                                if confirm:
+                                    self.atm_instance.transfer(amount, self.account_instance)
+                                    success_label = tk.Label(root,text="You have successfully transferred {}, your new balance is ${}".format(amount,self.account_instance.balance),bg='light blue', font=('arial', 10, 'bold'))
+                                    success_label.pack()
+                                else:
+                                    cancel_label = tk.Label(root,text="Transfer cancelled.",bg='light blue', font=('arial', 10, 'bold'))
+                                    cancel_label.pack()
 
                             else:
                                 error_label = tk.Label(root, text="ERROR: Unknown")
@@ -56,12 +67,19 @@ class customer:
                     
 
                 def deposit():
-                    entry = tk.Entry(root, text='Please enter the amount to deposit: ')
+                    deposit_label = tk.Label(root, text="Please enter the amount to deposit: ",bg='light blue', font=('arial', 10, 'bold'))
+                    deposit_label.pack()
+                    entry = tk.Entry(root)
                     entry.pack()
-                    amount = float(entry.get())
-                    self.account_instance.deposit(amount)
-                    success_label = tk.Label(root, text="Deposit successful")
-                    success_label.pack()
+
+                    def confirm_deposit():
+                        amount = float(entry.get())
+                        self.account_instance.deposit(amount)
+                        success_label = tk.Label(root, text="Deposit successful")
+                        success_label.pack()
+
+                    deposit_button = tk.Button(root, text="Confirm deposit", command=confirm_deposit,font=('arial', 10, 'bold'))
+                    deposit_button.pack(pady=15)
 
                 def withdraw():
                     entry = tk.Entry(root, text='Please enter the amount to withdraw: ')
@@ -145,6 +163,8 @@ class customer:
 
                 
             def savemoney(self):
+                save_label = tk.Label(root, text="Please enter the amount to save: ",bg='light blue', font=('arial', 10, 'bold'))
+                save_label.pack()
                 entry = tk.Entry(root, text='Please enter the amount to save: ')
                 entry.pack()
                 amount = float(entry.get())
