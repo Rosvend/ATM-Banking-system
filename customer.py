@@ -165,14 +165,14 @@ class customer:
             def savemoney(self):
                 save_label = tk.Label(root, text="Please enter the amount to save: ",bg='light blue', font=('arial', 10, 'bold'))
                 save_label.pack()
-                entry = tk.Entry(root, text='Please enter the amount to save: ')
+                entry = tk.Entry(root)
                 entry.pack()
                 amount = float(entry.get())
                 if amount <= 0:
-                    error_label = tk.Label(root, text="Invalid amount")
+                    error_label = tk.Label(root, text="Invalid amount",bg='red', font=('arial', 10, 'bold'))
                     error_label.pack()
                 elif amount > self.account_instance.balance:
-                    error_label = tk.Label(root, text="Insufficient funds")
+                    error_label = tk.Label(root, text="Insufficient funds", bg='red', font=('arial', 10, 'bold'))
                     error_label.pack()
                 else:
                     self.savings_balance += amount
