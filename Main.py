@@ -7,35 +7,6 @@ import tkinter as tk
 import sqlite3
 
 
-conn = sqlite3.connect('bank.db')
-c = conn.cursor()
-
-
-c.execute('''
-    CREATE TABLE customers (
-        name TEXT,
-        id TEXT,
-        age INTEGER,
-        cardnumber TEXT,
-        pin TEXT,
-        atm_location TEXT,
-        account_balance REAL,
-        savings_balance REAL,
-        cuatroxmil TEXT
-    )
-''')
-
-c.execute("INSERT INTO customers VALUES ('Daniel', '100', 26, '001', '1234', 'Laureles', 50000, 0, 'yes')")
-c.execute("INSERT INTO customers VALUES ('Sofia', '99', 18, '002', '4321', 'San Juan', 100000, 0, 'no')")
-c.execute("INSERT INTO customers VALUES ('Juan', '98', 30, '003', '0000', 'Laureles', 50000, 0, 'yes')")
-
-# Commit the changes
-conn.commit()
-
-# Close the connection
-conn.close()
-
-
 #Creamos objetos a partir de todas las clases dándoles atributos respectivamente e instanciamos en algunos casos
 customer1_account = Account("Daniel", 50000, "001")
 customer2_account = Account("Sofia", 100000, "002")
