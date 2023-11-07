@@ -269,7 +269,7 @@ class customer:
             def starting_ATM(self):
                     
                     root.title("ATM Banking System")
-                    root.geometry("600x600+500+100")
+                    root.geometry("800x800+400+20")
                     root.configure(background='light blue')
 
                     self.widgets = []
