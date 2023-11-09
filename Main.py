@@ -4,7 +4,6 @@ from ATM import ATM
 from customer import customer
 from savings import savings_account
 import tkinter as tk
-import sqlite3
 
 
 #Creamos objetos a partir de todas las clases dándoles atributos respectivamente e instanciamos en algunos casos
